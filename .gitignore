@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+*.pyc
+app/static/keyroom-source.zip
+app/static/build-info.json
+CHECKSUMS.sha256
