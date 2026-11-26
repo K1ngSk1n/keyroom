@@ -71,5 +71,6 @@ Do not use `git add .` in a project with sensitive untracked files.
 Checksums/Git IDs make this distribution traceable and detect accidental
 changes; they do not independently prove the operator deployed the same
 code, make malicious repackaging impossible, or replace a security audit.
-For stronger public provenance, publish this history to a public source
-repository and sign releases. Neither has been done automatically.
+The public source repository is https://github.com/K1ngSk1n/keyroom.
+It preserves the original local commit history. Releases are not digitally
+signed; Git history and SHA-256 checksums are integrity and provenance aids.

@@ -1,5 +1,7 @@
 # Keyroom — Xiaomi device keys
 
+Made by **Edd White**. Public source: [K1ngSk1n/keyroom](https://github.com/K1ngSk1n/keyroom).
+
 A public-facing web adaptation of Piotr Machowski's Xiaomi Cloud Tokens
 Extractor. QR sign-in only: choose a Xiaomi Home region, scan with Xiaomi
 Home, approve sign-in, then search devices and reveal/copy tokens or BLE
@@ -10,8 +12,11 @@ bind keys. Export results as JSON or end the session to clear them.
 Python 3.15 (the tested runtime):
 
 ```sh
+git clone https://github.com/K1ngSk1n/keyroom.git
+cd keyroom
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.lock
+python3 tools/package.py
 .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8080 --workers 1 --no-access-log --no-proxy-headers
 ```
 
