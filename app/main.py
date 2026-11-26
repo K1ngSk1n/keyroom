@@ -230,6 +230,16 @@ def assets(name: str):
     return FileResponse(STATIC / name)
 
 
+@app.get('/style.css')
+def stylesheet():
+    return assets('style.css')
+
+
+@app.get('/app.js')
+def javascript():
+    return assets('app.js')
+
+
 @app.get('/source')
 def source_archive():
     archive = STATIC / 'keyroom-source.zip'

@@ -171,3 +171,28 @@ def test_no_arbitrary_assets_or_oversized_posts(client):
     assert client.post('/api/session', headers={'Origin':ORIGIN}, content='x'*2049).status_code == 413
     assert client.get('/').status_code == 200
     assert client.get('/assets/app.js').status_code == 200
+
+
+def test_page_assets_work_from_a_file_and_the_web_server(client):
+    from html.parser import HTMLParser
+    from pathlib import Path
+    class Assets(HTMLParser):
+        def __init__(self):
+            super().__init__()
+            self.paths = []
+        def handle_starttag(self, tag, attributes):
+            attrs = dict(attributes)
+            if tag == 'script':
+                self.paths.append(attrs['src'])
+            if tag == 'link' and attrs.get('rel') == 'stylesheet':
+                self.paths.append(attrs['href'])
+    parser = Assets()
+    parser.feed(client.get('/').text)
+    assert len(parser.paths) == 2
+    for path in parser.paths:
+        assert path.startswith('./')
+        local = main.STATIC / path
+        assert local.is_file()
+        response = client.get('/' + path.removeprefix('./'))
+        assert response.status_code == 200
+        assert response.content == local.read_bytes()

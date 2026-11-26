@@ -4,7 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Retrieve Xiaomi Home device tokens and Bluetooth bind keys with QR sign-in.">
   <title>Keyroom — Xiaomi device keys</title>
-  <link rel="stylesheet" href="/assets/style.css"><script src="/assets/app.js" defer></script>
+  <link rel="stylesheet" href="./style.css"><script src="./app.js" defer></script>
 </head>
 <body>
 <header><a class="brand" href="/" aria-label="Keyroom home"><span class="brand-icon">k.</span> keyroom<span class="brand-sub">XIAOMI TOOLS</span></a><span class="header-note"><i></i> No account needed here</span></header>
@@ -14,7 +14,7 @@
     <aside><div class="section-label">THE PROCESS</div><ol id="steps"><li class="active"><b>01</b><span>Choose your region<small>Where your devices live</small></span></li><li><b>02</b><span>Scan & approve<small>Sign in with Xiaomi Home</small></span></li><li><b>03</b><span>Collect your keys<small>Copy just what you need</small></span></li></ol><div class="aside-note"><span>↳</span><p>Useful for temperature sensors, smart plugs, vacuums, and other Xiaomi Home devices.</p></div></aside>
     <section class="panel" aria-labelledby="panel-title">
       <div class="panel-top"><span id="stage" class="pill">STEP 01 / 03</span><span id="timer" hidden></span></div>
-      <div id="setup"><h2 id="panel-title">Let’s find your devices.</h2><p class="muted">Choose the same region you use in Xiaomi Home.</p>
+      <div id="setup"><h2 id="panel-title">Let’s find your devices.</h2><p class="muted">Choose the same region you use in Xiaomi Home.</p><p id="preview-note" class="notice" hidden>This is a layout preview. Open the running web app to sign in to Xiaomi.</p>
         <label for="region" class="field-label">Xiaomi Home region</label><select id="region"><option value="de">Europe · Germany</option><option value="cn">Mainland China</option><option value="us">United States</option><option value="sg">Singapore</option><option value="in">India</option><option value="i2">India · alternate</option><option value="tw">Taiwan</option><option value="ru">Russia</option><option value="all">Search all regions</option></select>
         <div class="privacy"><span class="privacy-icon">⌁</span><div><strong>A short visit. No saved keys.</strong><p>This server temporarily handles your Xiaomi login session and device keys. Sessions are isolated and expire after 10 minutes. Keys aren’t written to a database or application logs. Only continue if you trust this website’s operator.</p></div></div>
         <label class="consent"><input id="consent" type="checkbox"><span>I understand and want to retrieve keys for my own Xiaomi account.</span></label>

@@ -1,5 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
+const isFilePreview = window.location.protocol === 'file:';
 const views = ['setup', 'loading', 'scan', 'fetching', 'results', 'error'];
 let timer, devices = [], generation = 0, currentView = 'setup';
 function show(view, step = 0) {
@@ -11,6 +12,7 @@ function show(view, step = 0) {
   });
 }
 async function api(url, options = {}) {
+  if (isFilePreview) throw new Error('This is a layout preview. Open the running web app to sign in.');
   const r = await fetch(url, {cache: 'no-store', ...options});
   if (!r.ok) {
     const data = await r.json().catch(() => ({}));
@@ -97,7 +99,7 @@ function render() {
     card.append(list); $('devices').append(card);
   });
 }
-$('consent').addEventListener('change', () => { $('start').disabled = !$('consent').checked; });
+$('consent').addEventListener('change', () => { $('start').disabled = isFilePreview || !$('consent').checked; });
 $('start').addEventListener('click', start); $('end').addEventListener('click', endSession);
 $('retry').addEventListener('click', endSession); $('search').addEventListener('input', render);
 $('download').addEventListener('click', () => {
@@ -107,3 +109,18 @@ $('download').addEventListener('click', () => {
 // Session state is deliberately absent from localStorage, URLs, and analytics.
 window.addEventListener('pagehide', clearLocal);
 window.addEventListener('pageshow', e => { if (e.persisted) { generation++; $('session-actions').hidden = true; show('setup'); } });
+
+if (isFilePreview) {
+  $('preview-note').hidden = false;
+  $('consent').disabled = true;
+  $('region').disabled = true;
+  $('start').disabled = true;
+  $('start').textContent = 'Layout preview';
+  document.querySelector('.brand').href = 'index.html';
+  const source = document.querySelector('a[href="/source"]');
+  source.href = '../../TRACEABILITY.md';
+  source.textContent = 'Source & provenance';
+  const build = document.querySelector('a[href="/api/build"]');
+  build.removeAttribute('href');
+  build.textContent = 'Local layout preview';
+}

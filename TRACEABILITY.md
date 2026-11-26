@@ -1,6 +1,6 @@
 # Source provenance and build traceability
 
-Keyroom 0.2.0 is the normal website edition: HTML/CSS/JavaScript frontend,
+Keyroom 0.2.1 is the normal website edition: HTML/CSS/JavaScript frontend,
 Python backend, no browser extension. Code for this adaptation was authored
 with Codex in this chat. It is not an official Xiaomi or upstream release.
 

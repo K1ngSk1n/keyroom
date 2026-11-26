@@ -18,6 +18,10 @@ python3 -m venv .venv
 Open http://localhost:8080 (the default allowed origin). Using 127.0.0.1
 in the browser instead requires PUBLIC_ORIGIN=http://127.0.0.1:8080.
 
+Opening `app/static/index.html` directly also displays a styled layout
+preview, including in Safari. The preview disables sign-in because the
+Xiaomi login flow requires the running backend above.
+
 ## Deploy on your website
 
 This app needs a Python backend with outbound HTTPS access to Xiaomi.
